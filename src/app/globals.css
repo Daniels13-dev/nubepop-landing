@@ -2,71 +2,87 @@
 @import "tw-animate-css";
 @import "shadcn/tailwind.css";
 
-@custom-variant dark (&:is(.dark *));
+/* Removed unsupported at-rule `@custom-variant`.
+   Tailwind has a built-in dark variant (configure `darkMode: 'class'` in tailwind.config.cjs)
+   or you can add a custom variant via the Tailwind plugin API (see tailwind.config.cjs example below).
+ */
 
 /* Simple color tokens for NubePop */
 :root {
-  --color-primary: #8925D3;
-  --color-secondary: #EA1F78;
-  --color-accent: #F8499D;
-  --color-purple-light: #C049EB;
-  --color-dark: #050204;
-  --color-white: #FDFDFD;
+    --color-primary: #8925d3;
+    --color-secondary: #ea1f78;
+    --color-accent: #f8499d;
+    --color-purple-light: #c049eb;
+    --color-dark: #050204;
+    --color-white: #fdfdfd;
 
-  /* Semantic aliases used by components / utilities */
-  --background: var(--color-white);
-  --foreground: var(--color-dark);
-  --primary: var(--color-primary);
-  --primary-foreground: var(--color-white);
-  --secondary: var(--color-secondary);
-  --accent: var(--color-accent);
+    /* Measured navbar height (updated at runtime) */
+    --navbar-height: 0px;
 
-  /* Map common design tokens to brand colors so components pick them up */
-  --muted: color-mix(in srgb, var(--color-white) 85%, var(--color-primary) 15%);
-  --muted-foreground: rgba(5,2,4,0.65);
-  --border: rgba(5,2,4,0.06);
-  --input: rgba(5,2,4,0.04);
-  --ring: rgba(137,37,211,0.12);
-  --destructive: #E0116B; /* keep a distinct destructive color */
+    /* Semantic aliases used by components / utilities */
+    /* Force app-wide background to black and text to white */
+    --background: #000000;
+    --foreground: #ffffff;
+    --primary: var(--color-primary);
+    --primary-foreground: var(--color-white);
+    --secondary: var(--color-secondary);
+    --accent: var(--color-accent);
 
-  /* Minimal system tokens kept */
-  --radius: 0.625rem;
-  --ring: rgba(137,37,211,0.12);
-  --border: rgba(5,2,4,0.06);
+    /* Map common design tokens to brand colors so components pick them up */
+    --muted: rgba(255, 255, 255, 0.08);
+    --muted-foreground: rgba(255, 255, 255, 0.75);
+    --border: rgba(255, 255, 255, 0.06);
+    --input: rgba(255, 255, 255, 0.03);
+    --ring: rgba(137, 37, 211, 0.12);
+    --destructive: #e0116b; /* keep a distinct destructive color */
+
+    /* Minimal system tokens kept */
+    --radius: 0.625rem;
+    --ring: rgba(137, 37, 211, 0.12);
+    --border: rgba(5, 2, 4, 0.06);
 }
 
 .dark {
-  --background: var(--color-dark);
-  --foreground: var(--color-white);
-  /* keep primary / accent same so brand colors stay consistent */
-  --primary: var(--color-primary);
-  --primary-foreground: var(--color-white);
-  --secondary: var(--color-secondary);
-  --accent: var(--color-accent);
+    /* Keep same black background / white foreground so the app always appears black/white */
+    --background: #000000;
+    --foreground: #ffffff;
+    --primary: var(--color-primary);
+    --primary-foreground: var(--color-white);
+    --secondary: var(--color-secondary);
+    --accent: var(--color-accent);
 
-  --muted: color-mix(in srgb, var(--color-dark) 85%, var(--color-primary) 15%);
-  --muted-foreground: rgba(255,255,255,0.8);
-  --border: rgba(255,255,255,0.06);
-  --input: rgba(255,255,255,0.03);
-  --ring: rgba(137,37,211,0.18);
-  --destructive: #FF6AB5;
+    --muted: rgba(255, 255, 255, 0.08);
+    --muted-foreground: rgba(255, 255, 255, 0.8);
+    --border: rgba(255, 255, 255, 0.06);
+    --input: rgba(255, 255, 255, 0.03);
+    --ring: rgba(137, 37, 211, 0.18);
+    --destructive: #ff6ab5;
 }
 
 @layer base {
-  /* Minimal base reset — avoid depending on custom Tailwind utilities */
-  * {
-    box-sizing: border-box;
-  }
+    /* Minimal base reset — avoid depending on custom Tailwind utilities */
+    * {
+        box-sizing: border-box;
+    }
 
-  body {
-    background-color: var(--background);
-    color: var(--foreground);
-  }
+    body {
+        background-color: var(--background);
+        color: var(--foreground);
+    }
 
-  /* keep Tailwind's font utility if available, otherwise fallback will apply */
-  html {
-    font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto,
-      "Helvetica Neue", Arial, "Noto Sans", "Apple Color Emoji",
-      "Segoe UI Emoji", "Segoe UI Symbol";
-  }
+    /* keep Tailwind's font utility if available, otherwise fallback will apply */
+    html {
+        font-family:
+            ui-sans-serif,
+            system-ui,
+            -apple-system,
+            "Segoe UI",
+            Roboto,
+            "Helvetica Neue",
+            Arial,
+            "Noto Sans",
+            "Apple Color Emoji",
+            "Segoe UI Emoji",
+            "Segoe UI Symbol";
+    }
 }
