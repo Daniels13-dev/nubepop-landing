@@ -4,6 +4,7 @@ import { Card, CardContent } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Tag, DollarSign } from "lucide-react"
 import Image from "next/image"
+import Link from "next/link"
 
 type Product = {
     id: string
@@ -14,64 +15,7 @@ type Product = {
     isPrimary?: boolean
 }
 
-const products: Product[] = [
-    {
-        id: "p-vapers",
-        name: "Vapers Desechables",
-        description: "Listos para usar, sabores variados",
-        price: "9",
-        image: "/productos/vapers.png",
-        isPrimary: true,
-    },
-    {
-        id: "p-destilados",
-        name: "Destilados",
-        description: "Selección nacional e importada",
-        price: "29",
-        image: "/productos/destilados.png",
-        isPrimary: true,
-    },
-    {
-        id: "p-baterias",
-        name: "Baterías",
-        description: "Alto rendimiento para tus dispositivos",
-        price: "59",
-        image: "/productos/baterias.PNG",
-        isPrimary: true,
-    },
-    {
-        id: "p-mtrx25",
-        name: "MTRX 25000",
-        description: "Vape desechable de 25000 puffs con batería recargable, sabores intensos y gran producción de vapor, ideal para quienes buscan máxima duración.",
-        price: "35000",
-        image: "/productos/todos-productos/Mtrx25.PNG",
-        isPrimary: false,
-    },
-    {
-        id: "p-mtrx12",
-        name: "MTRX 12000",
-        description: "Vape desechable de 12000 puffs con sabores premium y vapor suave, perfecto para una experiencia de vapeo duradera y práctica.",
-        price: "24000",
-        image: "/productos/todos-productos/Mtrx12.PNG",
-        isPrimary: false,
-    },
-    {
-        id: "p-snoopysmoke",
-        name: "Snoopy Smoke",
-        description: "Vape desechable compacto con sabores intensos y vapor suave, ideal para quienes buscan un dispositivo práctico y portátil.",
-        price: "25000",
-        image: "/productos/todos-productos/SnoopySmoke.PNG",
-        isPrimary: false,
-    },
-    {
-        id: "p-lostmary",
-        name: "Lost Mary",
-        description: "Vape desechable de 5000 puffs con sabores premium y diseño compacto, perfecto para una experiencia de vapeo cómoda y portátil.",
-        price: "15000",
-        image: "/productos/todos-productos/LostMary.PNG",
-        isPrimary: false,
-    }
-]
+import { popularProducts as products } from "@/config/site-content"
 
 function ProductCard({ p }: { p: Product }) {
     return (
@@ -109,7 +53,9 @@ function ProductCard({ p }: { p: Product }) {
                             <span className="font-medium text-[var(--foreground)]">{p.price}</span>
                         </div>
 
-                        <Button size="sm">Ver</Button>
+                        <Link href="/vapers">
+                            <Button size="sm">Ver</Button>
+                        </Link>
                     </div>
                 )}
             </CardContent>
