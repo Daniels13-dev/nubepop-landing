@@ -3,6 +3,7 @@ import { Geist, Geist_Mono, Inter } from "next/font/google"
 import "./globals.css"
 import { cn } from "@/lib/utils"
 import { AgeVerification } from "@/components/ui/age-verification"
+import { CartProvider } from "@/context/CartContext"
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-sans" })
 
@@ -63,8 +64,10 @@ export default function RootLayout({
     return (
         <html lang="es" suppressHydrationWarning className={cn("font-sans", inter.variable)}>
             <body suppressHydrationWarning className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
-                <AgeVerification />
-                {children}
+                <CartProvider>
+                    <AgeVerification />
+                    {children}
+                </CartProvider>
             </body>
         </html>
     )
