@@ -7,7 +7,7 @@ import { Footer } from "@/components/landing/footer"
 
 export default function Home() {
     return (
-        <main className="container mx-auto px-6">
+        <main className="site-container">
             <Navbar />
             <Hero />
             <Features />

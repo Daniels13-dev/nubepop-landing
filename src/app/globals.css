@@ -2,11 +2,6 @@
 @import "tw-animate-css";
 @import "shadcn/tailwind.css";
 
-/* Removed unsupported at-rule `@custom-variant`.
-   Tailwind has a built-in dark variant (configure `darkMode: 'class'` in tailwind.config.cjs)
-   or you can add a custom variant via the Tailwind plugin API (see tailwind.config.cjs example below).
- */
-
 /* Simple color tokens for NubePop */
 :root {
     --color-primary: #8925d3;
@@ -65,12 +60,6 @@
         box-sizing: border-box;
     }
 
-    body {
-        background-color: var(--background);
-        color: var(--foreground);
-    }
-
-    /* keep Tailwind's font utility if available, otherwise fallback will apply */
     html {
         font-family:
             ui-sans-serif,
@@ -84,5 +73,23 @@
             "Apple Color Emoji",
             "Segoe UI Emoji",
             "Segoe UI Symbol";
+        overflow-y: auto;
+    }
+
+    body {
+        background-color: var(--background);
+        color: var(--foreground);
+        overflow-y: auto;
+    }
+}
+
+@layer components {
+    .site-container {
+        width: 100%;
+        margin-left: auto;
+        margin-right: auto;
+        max-width: 96rem; /* 1536px (Wider Premium) */
+        padding-left: 1.5rem;
+        padding-right: 1.5rem;
     }
 }
