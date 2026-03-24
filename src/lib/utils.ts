@@ -4,3 +4,18 @@ import { twMerge } from "tailwind-merge"
 export function cn(...inputs: ClassValue[]) {
     return twMerge(clsx(inputs))
 }
+
+export function formatCurrency(value: number) {
+    return new Intl.NumberFormat("es-CO", {
+        style: "currency",
+        currency: "COP",
+        minimumFractionDigits: 0,
+        maximumFractionDigits: 0,
+    }).format(value)
+}
+
+export function getWhatsAppUrl(phoneNumber: string, message?: string) {
+    const baseUrl = `https://wa.me/${phoneNumber}`
+    if (!message) return baseUrl
+    return `${baseUrl}?text=${encodeURIComponent(message)}`
+}

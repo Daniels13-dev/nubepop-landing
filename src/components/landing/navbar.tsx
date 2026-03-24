@@ -2,88 +2,116 @@
 
 import Link from "next/link"
 import Image from "next/image"
+import { motion } from "framer-motion"
+import { cn } from "@/lib/utils"
 import { useLayoutEffect, useRef, useEffect, useState } from "react"
 import { usePathname } from "next/navigation"
 import { useCart } from "@/context/CartContext"
 
 import { navLinks } from "@/config/site-content"
 
+import { ShoppingCart } from "lucide-react"
+
 export default function Navbar() {
     const headerRef = useRef<HTMLElement | null>(null)
     const pathname = usePathname()
     const { totalItems } = useCart()
     const [mounted, setMounted] = useState(false)
+    const [scrolled, setScrolled] = useState(false)
 
     useEffect(() => {
         setMounted(true)
+        const handleScroll = () => setScrolled(window.scrollY > 20)
+        window.addEventListener("scroll", handleScroll)
+        return () => window.removeEventListener("scroll", handleScroll)
     }, [])
 
     useLayoutEffect(() => {
         const el = headerRef.current
         if (!el) return
-
         const setHeight = () => {
             const h = el.offsetHeight
-            document.documentElement.style.setProperty("--navbar-height", `${h}px`)
+            document.documentElement.style.setProperty("--navbar-height", `${h + 24}px`)
         }
-
         setHeight()
-
         if (typeof ResizeObserver !== "undefined") {
             const ro = new ResizeObserver(setHeight)
             ro.observe(el)
             return () => ro.disconnect()
         }
-
         window.addEventListener("resize", setHeight)
         return () => window.removeEventListener("resize", setHeight)
     }, [])
 
     return (
-        <header ref={headerRef} className="fixed top-0 z-50 left-1/2 -translate-x-1/2 w-full">
-            <div className="w-full px-6 py-1 flex items-center justify-between bg-black/20 rounded-b-3xl shadow-sm backdrop-blur-lg border border-white/5">
-                {/* Logo */}
-                <div className="flex items-center gap-3">
-                    <Image
-                        src="/logo-negro.png"
-                        alt="NubePop"
-                        width={120}
-                        height={60}
-                        className="object-contain"
-                    />
-                </div>
+        <header 
+            ref={headerRef} 
+            className={cn(
+                "fixed top-6 left-1/2 -translate-x-1/2 z-50 w-full max-w-[min(90vw,1200px)] transition-all duration-500",
+                scrolled ? "top-4 scale-95 md:scale-100" : "top-6"
+            )}
+        >
+            <div className="relative group">
+                {/* Glowing border effect */}
+                <div className="absolute -inset-[1px] bg-gradient-to-r from-primary/50 via-secondary/50 to-primary/50 rounded-full blur-[2px] opacity-20 group-hover:opacity-40 transition-opacity duration-700" />
+                
+                <div className="relative flex items-center justify-between px-6 md:px-10 py-3 bg-zinc-900/60 backdrop-blur-3xl border border-white/10 rounded-full shadow-2xl">
+                    {/* Logo Area */}
+                    <Link href="/" className="group/logo">
+                        <div className="relative w-32 h-10 rounded-lg overflow-hidden flex items-center justify-start transition-transform duration-500 group-hover/logo:scale-105">
+                            <Image
+                                src="/logo-negro.png"
+                                alt="NubePop"
+                                width={65}
+                                height={40}
+                                className="object-contain"
+                            />
+                        </div>
+                    </Link>
 
-                {/* Links */}
-                <nav className="hidden md:flex items-center gap-10 font-medium">
-                    {navLinks.map((link) => (
-                        <Link 
-                            key={link.path}
-                            href={link.path} 
-                            className={`transition ${pathname === link.path ? "text-[#c049eb] font-bold" : "text-white hover:text-pink-200"}`}
-                        >
-                            {link.label}
+                    {/* Nav Links - Pill Style */}
+                    <nav className="hidden md:flex items-center gap-2 p-1 bg-white/[0.03] rounded-full border border-white/5">
+                        {navLinks.map((link) => {
+                            const isActive = pathname === link.path
+                            return (
+                                <Link 
+                                    key={link.path}
+                                    href={link.path} 
+                                    className={cn(
+                                        "px-5 py-2 rounded-full text-xs font-black uppercase tracking-widest transition-all duration-300 relative",
+                                        isActive ? "text-white" : "text-zinc-500 hover:text-white"
+                                    )}
+                                >
+                                    {isActive && (
+                                        <motion.div 
+                                            layoutId="nav-pill"
+                                            className="absolute inset-0 bg-primary/20 border border-primary/20 rounded-full -z-10"
+                                            transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
+                                        />
+                                    )}
+                                    {link.label}
+                                </Link>
+                            )
+                        })}
+                    </nav>
+
+                    {/* Cart & Actions */}
+                    <div className="flex items-center gap-4">
+                        <Link href="/carrito" className="relative group/cart">
+                            <div className="p-2.5 rounded-full bg-white/5 border border-white/10 group-hover/cart:bg-secondary/10 group-hover/cart:border-secondary/30 transition-all duration-300">
+                                <ShoppingCart className="w-5 h-5 text-white group-hover/cart:text-secondary transition-colors" />
+                            </div>
+                            {mounted && totalItems > 0 && (
+                                <motion.span 
+                                    initial={{ scale: 0 }}
+                                    animate={{ scale: 1 }}
+                                    className="absolute -top-1 -right-1 bg-secondary text-white text-[9px] font-black h-4 w-4 rounded-full flex items-center justify-center shadow-lg border border-black/20"
+                                >
+                                    {totalItems}
+                                </motion.span>
+                            )}
                         </Link>
-                    ))}
-                </nav>
-
-                {/* CTA Button & Cart */}
-                <div className="flex items-center gap-4">
-                    <Link href="/carrito" className="relative p-2 text-zinc-300 hover:text-[#EA1F78] transition-colors">
-                        <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
-                        </svg>
-                        {mounted && totalItems > 0 && (
-                            <span className="absolute top-0 right-0 bg-[#EA1F78] text-white text-[10px] font-bold h-4 w-4 rounded-full flex items-center justify-center translate-x-1 -translate-y-1">
-                                {totalItems}
-                            </span>
-                        )}
-                    </Link>
-                    <Link
-                        href="/vapers"
-                        className="hidden sm:flex px-6 py-2 rounded-full bg-gradient-to-r from-[#EA1F78] to-[#F8499D] text-white font-semibold shadow-lg hover:scale-105 transition"
-                    >
-                        Comprar ahora
-                    </Link>
+                    </div>
                 </div>
             </div>
         </header>

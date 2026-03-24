@@ -6,6 +6,8 @@ import Link from "next/link"
 import Navbar from "@/components/landing/navbar"
 import { Footer } from "@/components/landing/footer"
 import { Button } from "@/components/ui/button"
+import { ShoppingCart, Trash2, ArrowRight, Minus, Plus } from "lucide-react"
+import { FaWhatsapp } from "react-icons/fa"
 import { useCart } from "@/context/CartContext"
 
 export default function CarritoClient() {
@@ -36,11 +38,11 @@ export default function CarritoClient() {
     if (!mounted) return null // Previene errores de hidratación entre server y client (localStorage)
 
     return (
-        <main className="container mx-auto px-6">
+        <main className="site-container">
             <Navbar />
             
             <div className="pt-32 pb-20 min-h-screen">
-                <div className="max-w-5xl mx-auto border-b border-white/10 pb-6 mb-10">
+                <div className="w-full border-b border-white/10 pb-6 mb-10">
                     <h1 className="text-4xl md:text-5xl font-bold text-zinc-100 flex items-center gap-4">
                         Tu Carrito
                         <span className="text-xl bg-zinc-800 text-zinc-300 px-4 py-1 rounded-full font-medium">
@@ -52,9 +54,7 @@ export default function CarritoClient() {
                 {cartItems.length === 0 ? (
                     <div className="flex flex-col items-center justify-center py-20 text-center">
                         <div className="w-24 h-24 bg-zinc-900/50 rounded-full flex items-center justify-center mb-6">
-                            <svg className="w-12 h-12 text-zinc-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
-                            </svg>
+                            <ShoppingCart className="w-12 h-12 text-zinc-600" />
                         </div>
                         <h2 className="text-2xl font-semibold text-zinc-300 mb-2">Tu carrito está vacío</h2>
                         <p className="text-zinc-500 mb-8 max-w-md">Parece que aún no has agregado productos a tu carrito. Explora nuestras categorías y encuentra tus favoritos.</p>
@@ -75,7 +75,7 @@ export default function CarritoClient() {
                         </div>
                     </div>
                 ) : (
-                    <div className="flex flex-col lg:flex-row gap-12 max-w-7xl mx-auto">
+                    <div className="flex flex-col lg:flex-row gap-12 w-full">
                         {/* Items List */}
                         <div className="flex-1 space-y-6">
                             {cartItems.map((item) => (
@@ -123,9 +123,7 @@ export default function CarritoClient() {
                                                     className="text-zinc-500 hover:text-red-400 transition-colors p-2 bg-black/20 rounded-xl"
                                                     title="Eliminar producto"
                                                 >
-                                                    <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
-                                                    </svg>
+                                                    <Trash2 className="w-5 h-5" />
                                                 </button>
                                             </div>
                                         </div>
@@ -160,11 +158,9 @@ export default function CarritoClient() {
 
                                 <Button 
                                     onClick={handleWhatsAppOrder}
-                                    className="w-full h-14 rounded-xl text-lg font-bold bg-[#25D366] hover:bg-[#20bd5a] text-white shadow-[0_0_15px_rgba(37,211,102,0.2)] hover:shadow-[0_0_30px_rgba(37,211,102,0.6)] transition-all duration-300 flex items-center justify-center gap-3 group"
+                                    className="w-full h-14 rounded-xl text-lg font-black uppercase tracking-widest bg-white text-black hover:bg-zinc-200 shadow-xl transition-all duration-300 flex items-center justify-center gap-3 group"
                                 >
-                                    <svg viewBox="0 0 24 24" className="w-10 h-10 scale-[2] fill-current group-hover:rotate-3 transition-transform duration-300">
-                                        <path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.182-.573c.978.58 1.911.928 3.145.929 3.178 0 5.767-2.587 5.768-5.766.001-3.187-2.575-5.77-5.764-5.771zm3.392 8.244c-.144.405-.837.774-1.17.824-.299.045-.677.063-1.092-.069-.252-.08-.575-.187-.988-.365-1.739-.751-2.874-2.502-2.961-2.617-.087-.116-.708-.94-.708-1.793s.448-1.273.607-1.446c.159-.173.346-.217.462-.217l.332.006c.106.005.249-.04.39.298.144.347.491 1.2.534 1.287.043.087.072.188.014.304-.058.116-.087.188-.173.289l-.26.304c-.087.086-.177.18-.076.354.101.174.449.741.964 1.201.662.591 1.221.774 1.394.86s.274.066.376-.043c.101-.116.433-.506.549-.68.116-.173.231-.145.39-.087s1.011.477 1.184.564c.173.087.289.129.332.202.043.073.043.423-.101.827z"></path>
-                                    </svg>
+                                    <FaWhatsapp className="w-5 h-5 group-hover:rotate-12 transition-transform duration-300" />
                                     <span>Pedir por WhatsApp</span>
                                 </Button>
                                 
@@ -173,9 +169,7 @@ export default function CarritoClient() {
                                         onClick={clearCart}
                                         className="text-red-500 hover:text-red-400 text-sm hover:underline transition-colors flex items-center gap-2"
                                     >
-                                        <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
-                                        </svg>
+                                        <Trash2 className="w-4 h-4" />
                                         Vaciar carrito
                                     </button>
                                     

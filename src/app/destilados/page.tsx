@@ -1,13 +1,21 @@
 import type { Metadata } from "next"
 import DestiladosClientPage from "./destilados-client"
 
+import { CATEGORY_CONFIGS, SEO_CONFIG } from "@/config/site-content"
+
+const config = CATEGORY_CONFIGS.destilados
+
 export const metadata: Metadata = {
-    title: "Destilados",
-    description: "Explora nuestra exclusiva selección de destilados de alta pureza. Sativas energizantes, Indicas relajantes y los mejores Híbridos.",
+    title: config.seo.title,
+    description: config.seo.description,
+    alternates: {
+        canonical: `${SEO_CONFIG.baseUrl}/${config.slug}`,
+    },
     openGraph: {
-        title: "Destilados Premium | NubePop",
-        description: "Encuentra destilados de alta pureza. Sativas, Indicas e Híbridas para la mejor experiencia.",
-        url: "https://nubepop.com/destilados",
+        title: config.seo.title,
+        description: config.seo.description,
+        url: `${SEO_CONFIG.baseUrl}/${config.slug}`,
+        siteName: SEO_CONFIG.siteName,
     }
 }
 

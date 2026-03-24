@@ -1,116 +1,187 @@
 "use client"
 
-import { Card, CardContent } from "@/components/ui/card"
-import { Button } from "@/components/ui/button"
-import { Tag, DollarSign } from "lucide-react"
+import { motion } from "framer-motion"
 import Image from "next/image"
 import Link from "next/link"
+import { cn } from "@/lib/utils"
+import { ChevronRight, Star, TrendingUp } from "lucide-react"
+import { popularProducts as products, THEME_PRESETS } from "@/config/site-content"
+import { containerVariants, fadeInUp } from "@/lib/animations"
+import { Product } from "@/types"
 
-type Product = {
-    id: string
-    name: string
-    description: string
-    price?: string
-    image?: string
-    isPrimary?: boolean
-}
-
-import { popularProducts as products } from "@/config/site-content"
-
-function ProductCard({ p }: { p: Product }) {
+function FeatureCard({ product, className = "" }: { product: Product; className?: string }) {
+    const theme = THEME_PRESETS.PINK
+    
     return (
-        <Card className="ring-1 ring-[var(--foreground)] bg-transparent text-[var(--foreground)]">
-            <CardContent className="p-6 space-y-4 text-[var(--foreground)]">
-                {/* Imagen: si NO es primary la mostramos más grande con aspecto 9:16 (vertical) */}
-                <div
-                    className={
-                        `rounded-md border border-[var(--foreground)] flex items-center justify-center overflow-hidden ` +
-                        (p.isPrimary ? `h-40` : `w-full`)
-                    }
-                    // usamos style inline para forzar aspect-ratio 9/16 en navegadores compatibles
-                    style={p.isPrimary ? undefined : { aspectRatio: "9/16" }}
-                >
-                    {p.image ? (
-                        <Image src={p.image} alt={p.name} width={400} height={400} className="w-full h-full object-cover" />
-                    ) : (
-                        <div className="text-sm text-[var(--foreground)]">Imagen</div>
-                    )}
+        <motion.div 
+            variants={fadeInUp}
+            className={cn("group relative rounded-[2rem] overflow-hidden border border-white/5 bg-zinc-900/40 backdrop-blur-xl transition-all duration-700 hover:bg-zinc-900/60 hover:border-white/10", className)}
+        >
+            {/* Background Image / Product Image */}
+            <div className="absolute inset-0 z-0">
+                <Image 
+                    src={product.images[0] || "/placeholder.png"} 
+                    alt={product.name} 
+                    fill 
+                    className="object-cover opacity-60 transition-transform duration-1000 group-hover:scale-110 group-hover:opacity-80"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent" />
+            </div>
+
+            {/* Content Overlay */}
+            <div className="relative z-10 h-full p-8 flex flex-col justify-end gap-2">
+                <div className="flex items-center gap-2 mb-2">
+                    <span className="px-3 py-1 bg-white/10 backdrop-blur-md rounded-full text-[10px] uppercase font-black tracking-widest text-[#c049eb] border border-white/5 font-mono">
+                        {product.isPrimary ? "Colección" : "Tendencia"}
+                    </span>
                 </div>
+                
+                <h3 className="text-2xl md:text-3xl font-black text-white leading-none tracking-tighter uppercase mb-2">
+                    {product.name}
+                </h3>
+                
+                <p className="text-zinc-400 text-xs md:text-sm line-clamp-2 leading-relaxed opacity-0 group-hover:opacity-100 transition-opacity duration-500 max-w-xs">
+                    {product.description}
+                </p>
 
-                <div className="flex items-center gap-3">
-                    {!p.isPrimary && (
-                        <Tag className="w-6 h-6 text-[var(--color-secondary)]" />
-                    )}
-                    <h3 className="text-lg font-semibold text-[var(--foreground)]">{p.name}</h3>
+                <div className="mt-4 flex items-center justify-between">
+                    <span className="text-xl font-mono font-black text-white tracking-tighter">
+                        Desde ${String(product.price).replace(/\d(?=(\d{3})+$)/g, "$&.")}
+                    </span>
+                    <Link 
+                        href={product.isPrimary ? `/${String(product.id).split('-')[1] || product.id}` : "/vapers"}
+                        className="w-10 h-10 rounded-full bg-white text-black flex items-center justify-center hover:scale-110 transition-transform shadow-xl"
+                    >
+                        <ChevronRight className="w-5 h-5 stroke-[3]" />
+                    </Link>
                 </div>
+            </div>
 
-                <p className="text-[var(--foreground)]">{p.description}</p>
-
-                {!p.isPrimary && (
-                    <div className="flex items-center justify-between">
-                        <div className="flex items-center gap-2 text-sm">
-                            <DollarSign className="w-4 h-4 text-[var(--foreground)]" />
-                            <span className="font-medium text-[var(--foreground)]">{p.price}</span>
-                        </div>
-
-                        <Link href="/vapers">
-                            <Button size="sm">Ver</Button>
-                        </Link>
-                    </div>
-                )}
-            </CardContent>
-        </Card>
+            {/* Shine effect */}
+            <div className="absolute inset-0 z-20 pointer-events-none bg-gradient-to-tr from-white/10 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
+        </motion.div>
     )
 }
 
 export function Features() {
-    return (
-        <section id="features" className="py-24">
-            <h2 className="text-2xl font-semibold mb-6 text-center text-[var(--foreground)]">
-                Productos
-            </h2>
-
-            <div className="grid md:grid-cols-3 gap-8">
-                {products.slice(0, 3).map((p) => (
-                    <ProductCard key={p.id} p={p} />
-                ))}
-            </div>
-
-            <div className="mt-16">
-                <PopularFeatures products={products} />
-            </div>
-        </section>
-    )
-}
-
-
-
-function PopularFeatures({ products }: { products: Product[] }) {
-    // Static popular products grid (no accordion)
-    // Solo renderizamos productos que NO sean `isPrimary`.
-    const nonPrimary = products.filter((p) => !p.isPrimary)
-
-    // Si no hay productos no-principales, no renderizamos la sección
-    if (nonPrimary.length === 0) return null
-
-    // Queremos hasta 4 productos populares; si hay menos de 4, repetimos los no-principales
-    const popular: Product[] = []
-    for (let i = 0; popular.length < 4; i++) {
-        popular.push(nonPrimary[i % nonPrimary.length])
-    }
+    const categories = products.filter(p => p.isPrimary)
+    const featured = products.filter(p => !p.isPrimary)
 
     return (
-        <section>
-            <div className="flex items-center justify-between mb-6">
-                <h3 className="text-2xl font-semibold text-[var(--foreground)]">Populares</h3>
-                <div className="text-sm text-muted-foreground">Los productos más populares</div>
-            </div>
+        <section id="features" className="py-24 relative overflow-hidden">
+            {/* Background Decorations */}
+            <div className="absolute top-1/4 -right-20 w-[40rem] h-[40rem] bg-secondary/10 blur-[150px] rounded-full pointer-events-none" />
+            <div className="absolute bottom-1/4 -left-20 w-[40rem] h-[40rem] bg-primary/10 blur-[150px] rounded-full pointer-events-none" />
+            
+            <div className="site-container relative z-10">
+                {/* --- SECCIÓN 1: COLECCIONES (BENTO 1) --- */}
+                <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6">
+                    <div className="max-w-xl">
+                        <div className="flex items-center gap-2 mb-4 animate-in fade-in slide-in-from-left-4 duration-700">
+                            <span className="h-px w-8 bg-secondary" />
+                            <span className="text-secondary uppercase text-[10px] font-black tracking-[0.2em] font-mono">Nuestras Categorías</span>
+                        </div>
+                        <h2 className="text-5xl md:text-7xl font-black text-white leading-[0.85] uppercase tracking-tighter">
+                            Explora las <br /> <span className="text-transparent" style={{ WebkitTextStroke: '1px white' }}>Colecciones</span>
+                        </h2>
+                    </div>
+                </div>
 
-            <div className="grid grid-cols-4 gap-8">
-                {popular.map((p, idx) => (
-                    // key usa índice si repetimos IDs para evitar duplicados en el map
-                    <ProductCard key={`${p.id}-${idx}`} p={p} />
-                ))}
+                <motion.div 
+                    variants={containerVariants}
+                    initial="initial"
+                    whileInView="animate"
+                    viewport={{ once: true }}
+                    className="grid grid-cols-1 md:grid-cols-4 lg:grid-cols-6 auto-rows-[250px] gap-6 mb-32"
+                >
+                    {/* Item 1: Vapers (Mega Highlight) */}
+                    {categories[0] && (
+                        <FeatureCard 
+                            product={categories[0]} 
+                            className="md:col-span-2 lg:col-span-4 lg:row-span-2" 
+                        />
+                    )}
+
+                    {/* Item 2: Destilados (Tall) */}
+                    {categories[1] && (
+                        <FeatureCard 
+                            product={categories[1]} 
+                            className="md:col-span-2 lg:col-span-2 lg:row-span-1" 
+                        />
+                    )}
+
+                    {/* Item 3: Baterías (Wide) */}
+                    {categories[2] && (
+                        <FeatureCard 
+                            product={categories[2]} 
+                            className="md:col-span-2 lg:col-span-2 lg:row-span-1" 
+                        />
+                    )}
+                </motion.div>
+
+                {/* --- SECCIÓN 2: TENDENCIAS (BENTO 2) --- */}
+                <div className="mb-12 border-t border-white/5 pt-24">
+                    <div className="flex items-center gap-4 mb-4">
+                        <TrendingUp className="w-8 h-8 text-secondary" />
+                        <h3 className="text-3xl md:text-5xl font-black text-white uppercase tracking-tighter leading-none">
+                            Tendencias Actuales
+                        </h3>
+                    </div>
+                    <p className="text-zinc-500 font-mono text-sm uppercase tracking-widest max-w-md">
+                        Los productos más deseados de esta semana seleccionados para ti.
+                    </p>
+                </div>
+
+                <motion.div 
+                    variants={containerVariants}
+                    initial="initial"
+                    whileInView="animate"
+                    viewport={{ once: true }}
+                    className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 auto-rows-[220px] gap-6"
+                >
+                    {/* Featured Tendencia - Item 1 (Big) */}
+                    {featured[0] && (
+                        <FeatureCard 
+                            product={featured[0]} 
+                            className="sm:col-span-2 sm:row-span-2" 
+                        />
+                    )}
+
+                    {/* Item 2 */}
+                    {featured[1] && (
+                        <FeatureCard 
+                            product={featured[1]} 
+                            className="sm:col-span-1 sm:row-span-1" 
+                        />
+                    )}
+
+                    {/* Item 3 */}
+                    {featured[2] && (
+                        <FeatureCard 
+                            product={featured[2]} 
+                            className="sm:col-span-1 sm:row-span-1" 
+                        />
+                    )}
+
+                    {/* Item 4 - Wide Banner at bottom of trending */}
+                    {featured[3] && (
+                        <FeatureCard 
+                            product={featured[3]} 
+                            className="sm:col-span-2 sm:row-span-1" 
+                        />
+                    )}
+                </motion.div>
+                
+                {/* CTA Final */}
+                <div className="mt-24 flex flex-col items-center">
+                    <Link 
+                        href="/vapers" 
+                        className="group flex items-center gap-4 px-12 py-6 rounded-full bg-gradient-to-r from-primary/80 to-secondary/80 text-white font-black uppercase text-sm tracking-widest hover:scale-105 transition-all shadow-[0_20px_50px_rgba(137,37,211,0.2)] hover:shadow-[0_30px_60px_rgba(234,31,120,0.3)] backdrop-blur-md border border-white/10"
+                    >
+                        Ver Catálogo Completo
+                        <ChevronRight className="w-5 h-5 stroke-[2.5] transition-transform group-hover:translate-x-1" />
+                    </Link>
+                </div>
             </div>
         </section>
     )

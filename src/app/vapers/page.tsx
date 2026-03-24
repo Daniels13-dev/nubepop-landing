@@ -1,13 +1,21 @@
 import type { Metadata } from "next"
 import VapersClientPage from "./vapers-client"
 
+import { CATEGORY_CONFIGS, SEO_CONFIG } from "@/config/site-content"
+
+const config = CATEGORY_CONFIGS.vapers
+
 export const metadata: Metadata = {
-    title: "Vapers Desechables",
-    description: "Explora nuestra selección premium de vapers desechables de las mejores marcas. Calidad excepcional, sabores frutales, mentolados y más.",
+    title: config.seo.title,
+    description: config.seo.description,
+    alternates: {
+        canonical: `${SEO_CONFIG.baseUrl}/${config.slug}`,
+    },
     openGraph: {
-        title: "Vapers Desechables | NubePop",
-        description: "Descubre nuestra selección premium de vapers. Calidad excepcional y sabores inolvidables.",
-        url: "https://nubepop.com/vapers",
+        title: config.seo.title,
+        description: config.seo.description,
+        url: `${SEO_CONFIG.baseUrl}/${config.slug}`,
+        siteName: SEO_CONFIG.siteName,
     }
 }
 
