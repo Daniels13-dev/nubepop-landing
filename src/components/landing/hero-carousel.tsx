@@ -15,14 +15,17 @@ interface HeroCarouselProps {
 export const HeroCarousel = forwardRef<HTMLDivElement, HeroCarouselProps>(
     ({ promos, active, className, ...props }, ref) => {
         return (
-            <div 
-                ref={ref} 
-                className={className || "relative w-full max-w-[320px] md:max-w-[420px] aspect-[9/16] overflow-hidden rounded-2xl"} 
+            <div
+                ref={ref}
+                className={
+                    className ||
+                    "relative w-full max-w-[320px] md:max-w-[420px] aspect-[9/16] overflow-hidden rounded-2xl"
+                }
                 {...props}
             >
                 {promos.map((src: string, i: number) => {
-                    const isLogo = src.includes("logo-negro") || i === promos.length - 1;
-                    
+                    const isLogo = src.includes("logo-negro") || i === promos.length - 1
+
                     return (
                         <motion.div
                             key={src}
@@ -59,7 +62,7 @@ export const HeroCarousel = forwardRef<HTMLDivElement, HeroCarouselProps>(
                                 </div>
                             )}
                         </motion.div>
-                    );
+                    )
                 })}
             </div>
         )

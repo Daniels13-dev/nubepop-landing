@@ -36,8 +36,8 @@ export function MobileNavbar({ totalItems }: { totalItems: number }) {
                     </span>
                 )}
             </Link>
-            
-            <button 
+
+            <button
                 onClick={() => setIsOpen(!isOpen)}
                 className="p-2 text-white hover:text-secondary transition-colors z-[60]"
                 aria-label="Toggle Menu"
@@ -49,7 +49,7 @@ export function MobileNavbar({ totalItems }: { totalItems: number }) {
                 {isOpen && (
                     <>
                         {/* Backdrop */}
-                        <motion.div 
+                        <motion.div
                             initial={{ opacity: 0 }}
                             animate={{ opacity: 1 }}
                             exit={{ opacity: 0 }}
@@ -58,7 +58,7 @@ export function MobileNavbar({ totalItems }: { totalItems: number }) {
                         />
 
                         {/* Menu Panel */}
-                        <motion.nav 
+                        <motion.nav
                             variants={containerVariants}
                             initial="initial"
                             animate="animate"
@@ -67,19 +67,19 @@ export function MobileNavbar({ totalItems }: { totalItems: number }) {
                         >
                             {navLinks.map((link) => (
                                 <motion.div key={link.path} variants={fadeInUp}>
-                                    <Link 
+                                    <Link
                                         href={link.path}
                                         className={`text-3xl font-bold transition-all ${
-                                            pathname === link.path 
-                                            ? "text-primary scale-110" 
-                                            : "text-white hover:text-secondary"
+                                            pathname === link.path
+                                                ? "text-primary scale-110"
+                                                : "text-white hover:text-secondary"
                                         }`}
                                     >
                                         {link.label}
                                     </Link>
                                 </motion.div>
                             ))}
-                            
+
                             <motion.div variants={fadeInUp} className="mt-8">
                                 <Link
                                     href="/vapers"

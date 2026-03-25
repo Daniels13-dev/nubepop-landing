@@ -4,26 +4,23 @@ export function JsonLd() {
     const schema = {
         "@context": "https://schema.org",
         "@type": "OnlineStore",
-        "name": "NubePop",
-        "description": "Tienda premium de vapers, destilados y accesorios en Colombia.",
-        "url": siteUrl,
-        "logo": `${siteUrl}/logo-negro.png`,
-        "sameAs": [
-            "https://instagram.com/nubepop",
-            "https://facebook.com/nubepop"
-        ],
-        "contactPoint": {
+        name: "NubePop",
+        description: "Tienda premium de vapers, destilados y accesorios en Colombia.",
+        url: siteUrl,
+        logo: `${siteUrl}/logo-negro.png`,
+        sameAs: ["https://instagram.com/nubepop", "https://facebook.com/nubepop"],
+        contactPoint: {
             "@type": "ContactPoint",
-            "telephone": `+${phoneNumber}`,
-            "contactType": "Customer Service",
-            "areaServed": "CO",
-            "availableLanguage": "Spanish"
+            telephone: `+${phoneNumber}`,
+            contactType: "Customer Service",
+            areaServed: "CO",
+            availableLanguage: "Spanish",
         },
-        "potentialAction": {
+        potentialAction: {
             "@type": "SearchAction",
-            "target": `${siteUrl}/productos?q={search_term_string}`,
-            "query-input": "required name=search_term_string"
-        }
+            target: `${siteUrl}/productos?q={search_term_string}`,
+            "query-input": "required name=search_term_string",
+        },
     }
 
     return (

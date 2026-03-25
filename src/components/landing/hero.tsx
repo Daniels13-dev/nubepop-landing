@@ -19,11 +19,9 @@ export default function Hero() {
     }, [totalSlides, isPaused])
 
     return (
-        <section
-            className="relative min-h-[90vh] lg:min-h-screen flex items-center justify-center overflow-hidden pt-12 lg:pt-0"
-        >
+        <section className="relative min-h-[90vh] lg:min-h-screen flex items-center justify-center overflow-hidden pt-12 lg:pt-0">
             {/* Dynamic Background Glow - Optimized for mobile */}
-            <motion.div 
+            <motion.div
                 key={active}
                 initial={{ opacity: 0, scale: 0.8 }}
                 animate={{ opacity: 0.3, scale: 1 }}
@@ -36,19 +34,15 @@ export default function Hero() {
 
             <div className="relative site-container z-10 w-full pb-28 lg:pb-0 mb-10 lg:mb-0">
                 <div className="flex flex-col lg:grid lg:grid-cols-12 gap-8 lg:gap-12 items-center">
-                    
                     {/* Visuals - High Priority on Mobile (Stacked on top) */}
                     <div className="order-1 lg:order-2 lg:col-span-12 xl:col-span-5 relative w-full mb-8 lg:mb-0">
-                        <HeroVisuals 
-                            active={active}
-                            onHover={setIsPaused}
-                        />
+                        <HeroVisuals active={active} onHover={setIsPaused} />
                     </div>
 
                     {/* Content - Below Visuals on Mobile */}
                     <div className="order-2 lg:order-1 lg:col-span-12 xl:col-span-7 text-center lg:text-left px-4">
                         {heroSlides.map((slide, idx) => (
-                            <HeroContent 
+                            <HeroContent
                                 key={idx}
                                 slide={slide}
                                 active={active === idx}
@@ -56,7 +50,6 @@ export default function Hero() {
                             />
                         ))}
                     </div>
-
                 </div>
             </div>
 
@@ -68,10 +61,14 @@ export default function Hero() {
                         onClick={() => setActive(idx)}
                         className="group relative px-2 py-4 shadow-none border-none bg-transparent"
                     >
-                        <div className={cn(
-                            "h-1 rounded-full transition-all duration-500",
-                            active === idx ? "w-10 md:w-12 bg-white" : "w-3 md:w-4 bg-white/20 group-hover:bg-white/40"
-                        )} />
+                        <div
+                            className={cn(
+                                "h-1 rounded-full transition-all duration-500",
+                                active === idx
+                                    ? "w-10 md:w-12 bg-white"
+                                    : "w-3 md:w-4 bg-white/20 group-hover:bg-white/40"
+                            )}
+                        />
                     </button>
                 ))}
             </div>

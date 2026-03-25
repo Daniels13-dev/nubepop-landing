@@ -5,9 +5,9 @@ import { CATEGORY_CONFIGS } from "@/config/site-content"
 
 export default function CombosPage() {
     const config = CATEGORY_CONFIGS.combos
-    
+
     return (
-        <ProductCatalog 
+        <ProductCatalog
             title={config.title}
             titleGradientClass="from-orange-400 to-rose-500"
             description={config.description}

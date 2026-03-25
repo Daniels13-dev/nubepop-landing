@@ -26,13 +26,22 @@ export const metadata: Metadata = {
     metadataBase: new URL(siteUrl),
     title: {
         default: "NubePop | Vapers Desechables, Destilados y Baterías Premium",
-        template: "%s | NubePop"
+        template: "%s | NubePop",
     },
-    description: "Tienda líder en vaporizadores desechables, destilados de alta pureza y accesorios para vapeo en Colombia. Calidad garantizada, envíos rápidos y la mejor selección de marcas.",
+    description:
+        "Tienda líder en vaporizadores desechables, destilados de alta pureza y accesorios para vapeo en Colombia. Calidad garantizada, envíos rápidos y la mejor selección de marcas.",
     keywords: [
-        "vape colombia", "vapers bogota", "vapers medellin", "vapes desechables", 
-        "destilados thc", "baterias 510", "pod systems colombia", "nubepop", 
-        "tienda de vapeo online", "accesorios vape", "compra vapers whatsapp"
+        "vape colombia",
+        "vapers bogota",
+        "vapers medellin",
+        "vapes desechables",
+        "destilados thc",
+        "baterias 510",
+        "pod systems colombia",
+        "nubepop",
+        "tienda de vapeo online",
+        "accesorios vape",
+        "compra vapers whatsapp",
     ],
     authors: [{ name: "NubePop", url: siteUrl }],
     creator: "NubePop",
@@ -51,9 +60,9 @@ export const metadata: Metadata = {
         googleBot: {
             index: true,
             follow: true,
-            'max-video-preview': -1,
-            'max-image-preview': 'large',
-            'max-snippet': -1,
+            "max-video-preview": -1,
+            "max-image-preview": "large",
+            "max-snippet": -1,
         },
     },
     openGraph: {
@@ -61,7 +70,8 @@ export const metadata: Metadata = {
         locale: "es_CO",
         url: siteUrl,
         title: "NubePop | Vapers, Destilados y Baterías de Máxima Calidad",
-        description: "Eleva tu experiencia con la mejor selección de vapers desechables y destilados. Envío seguro a todo el país.",
+        description:
+            "Eleva tu experiencia con la mejor selección de vapers desechables y destilados. Envío seguro a todo el país.",
         siteName: "NubePop Colombia",
         images: [
             {
@@ -75,7 +85,8 @@ export const metadata: Metadata = {
     twitter: {
         card: "summary_large_image",
         title: "NubePop | Vapers Premium en Colombia",
-        description: "Los mejores vapers y destilados con envío inmediato. Experiencia premium garantizada.",
+        description:
+            "Los mejores vapers y destilados con envío inmediato. Experiencia premium garantizada.",
         creator: "@nubepop",
         images: ["/og-image.png"],
     },
@@ -85,7 +96,7 @@ export const metadata: Metadata = {
         apple: "/apple-touch-icon.png",
     },
     verification: {
-        google: 'google-site-verification-id', // User should replace this
+        google: "google-site-verification-id", // User should replace this
     },
 }
 
@@ -106,9 +117,12 @@ export default function RootLayout({
                 <MetaPixel />
                 <GoogleAnalytics />
             </head>
-            <body suppressHydrationWarning className={`${geistSans.variable} ${geistMono.variable} antialiased selection:bg-primary/30`}>
+            <body
+                suppressHydrationWarning
+                className={`${geistSans.variable} ${geistMono.variable} antialiased selection:bg-primary/30`}
+            >
                 <BackgroundAura />
-                <InfiniteMarquee 
+                <InfiniteMarquee
                     speed={25}
                     className="top-0 z-[60] fixed bg-white/90 backdrop-blur-md border-b border-black/5"
                     items={[
@@ -116,8 +130,8 @@ export default function RootLayout({
                         "Productos 100% Originales y Garantizados",
                         "Soporte Personalizado 24/7 vía WhatsApp",
                         "Novedades Semanales en Vapers y Destilados",
-                        "NubePop: Elevando tu experiencia el siguiente nivel"
-                    ]} 
+                        "NubePop: Elevando tu experiencia el siguiente nivel",
+                    ]}
                 />
                 <CartProvider>
                     <AgeVerification />

@@ -1,23 +1,36 @@
-import { NavLink, Testimonial, FAQItem, HeroSlide, ThemeClasses, Product, FilterOption } from "@/types"
-import { VAPERS_FALLBACK, DESTILADOS_FALLBACK, BATERIAS_FALLBACK, COMBOS_FALLBACK } from "./products-fallback"
+import {
+    NavLink,
+    Testimonial,
+    FAQItem,
+    HeroSlide,
+    ThemeClasses,
+    Product,
+    FilterOption,
+} from "@/types"
+import {
+    VAPERS_FALLBACK,
+    DESTILADOS_FALLBACK,
+    BATERIAS_FALLBACK,
+    COMBOS_FALLBACK,
+} from "./products-fallback"
 
 // 1. Interfaces
 export interface CategoryConfig {
-    id: string;
-    slug: string;
-    title: string;
-    description: string;
-    sheetUrl: string | undefined;
-    fallbackData: Product[];
-    cartCategory: string;
-    filterProperty: string;
-    defaultFilterLabel: string;
-    filterOptions: FilterOption[];
-    theme: ThemeClasses;
+    id: string
+    slug: string
+    title: string
+    description: string
+    sheetUrl: string | undefined
+    fallbackData: Product[]
+    cartCategory: string
+    filterProperty: string
+    defaultFilterLabel: string
+    filterOptions: FilterOption[]
+    theme: ThemeClasses
     seo: {
-        title: string;
-        description: string;
-    };
+        title: string
+        description: string
+    }
 }
 
 // 2. Global SEO & Constants
@@ -34,8 +47,9 @@ export const SEO_CONFIG = {
     baseUrl: "https://nubepop.com",
     siteName: "NubePop",
     defaultTitle: "NubePop | Vapers y Destilados Premium Colombia",
-    defaultDescription: "La mejor selección de vapers desechables, destilados de alta pureza y baterías en Colombia. Calidad garantizada y envío rápido.",
-};
+    defaultDescription:
+        "La mejor selección de vapers desechables, destilados de alta pureza y baterías en Colombia. Calidad garantizada y envío rápido.",
+}
 
 // 3. Theme Presets
 export const THEME_PRESETS: Record<string, ThemeClasses> = {
@@ -49,7 +63,7 @@ export const THEME_PRESETS: Record<string, ThemeClasses> = {
         glowBg: "bg-[#c049eb]/20",
         priceGradient: "from-[#c049eb] to-pink-200",
         activePageBg: "bg-[#c049eb] text-white shadow-[0_0_15px_-3px_rgba(192,73,235,0.5)]",
-        loaderBorder: "border-[#c049eb]"
+        loaderBorder: "border-[#c049eb]",
     },
     BLUE: {
         text: "text-[#38bdf8]",
@@ -61,7 +75,7 @@ export const THEME_PRESETS: Record<string, ThemeClasses> = {
         glowBg: "bg-[#38bdf8]/20",
         priceGradient: "from-blue-400 to-cyan-300",
         activePageBg: "bg-[#38bdf8] text-white shadow-[0_0_15px_-3px_rgba(56,189,248,0.5)]",
-        loaderBorder: "border-[#38bdf8]"
+        loaderBorder: "border-[#38bdf8]",
     },
     GREEN: {
         text: "text-emerald-400",
@@ -73,7 +87,7 @@ export const THEME_PRESETS: Record<string, ThemeClasses> = {
         glowBg: "bg-emerald-400/20",
         priceGradient: "from-emerald-400 to-cyan-300",
         activePageBg: "bg-emerald-400 text-white shadow-[0_0_15px_-3px_rgba(52,211,153,0.5)]",
-        loaderBorder: "border-emerald-400"
+        loaderBorder: "border-emerald-400",
     },
     PINK: {
         text: "text-secondary",
@@ -85,9 +99,9 @@ export const THEME_PRESETS: Record<string, ThemeClasses> = {
         glowBg: "bg-secondary/20",
         priceGradient: "from-secondary to-accent",
         activePageBg: "bg-secondary text-white shadow-[0_0_15px_-3px_rgba(234,31,120,0.5)]",
-        loaderBorder: "border-secondary"
-    }
-};
+        loaderBorder: "border-secondary",
+    },
+}
 
 // 4. Category Configs
 export const CATEGORY_CONFIGS: Record<string, CategoryConfig> = {
@@ -95,7 +109,8 @@ export const CATEGORY_CONFIGS: Record<string, CategoryConfig> = {
         id: "vapers",
         slug: "vapers",
         title: "Vapers",
-        description: "Descubre nuestra selección premium de vapers. Calidad excepcional y sabores inolvidables.",
+        description:
+            "Descubre nuestra selección premium de vapers. Calidad excepcional y sabores inolvidables.",
         sheetUrl: process.env.NEXT_PUBLIC_GOOGLE_SHEETS_VAPERS_URL,
         fallbackData: VAPERS_FALLBACK,
         cartCategory: "Vaper",
@@ -104,19 +119,21 @@ export const CATEGORY_CONFIGS: Record<string, CategoryConfig> = {
         filterOptions: [
             { label: "Frutales", value: "fruity", mappedValue: "Fruity" },
             { label: "Fríos (Ice)", value: "ice", mappedValue: "Ice" },
-            { label: "Cítricos", value: "citrus", mappedValue: "Citrus" }
+            { label: "Cítricos", value: "citrus", mappedValue: "Citrus" },
         ],
         theme: THEME_PRESETS.PURPLE,
         seo: {
             title: "Vapers Desechables Premium | NubePop Colombia",
-            description: "Compra vapers desechables de larga duración (5000+ puffs) en Colombia. Las mejores marcas con sabores intensos y envío rápido.",
-        }
+            description:
+                "Compra vapers desechables de larga duración (5000+ puffs) en Colombia. Las mejores marcas con sabores intensos y envío rápido.",
+        },
     },
     destilados: {
         id: "destilados",
         slug: "destilados",
         title: "Destilados",
-        description: "Explora nuestra exclusiva selección de destilados de alta pureza. Sativas energizantes, Indicas relajantes y los mejores Híbridos.",
+        description:
+            "Explora nuestra exclusiva selección de destilados de alta pureza. Sativas energizantes, Indicas relajantes y los mejores Híbridos.",
         sheetUrl: process.env.NEXT_PUBLIC_GOOGLE_SHEETS_DESTILADOS_URL,
         fallbackData: DESTILADOS_FALLBACK,
         cartCategory: "Destilado",
@@ -125,19 +142,21 @@ export const CATEGORY_CONFIGS: Record<string, CategoryConfig> = {
         filterOptions: [
             { label: "Indica", value: "indica", mappedValue: "Indica" },
             { label: "Sativa", value: "sativa", mappedValue: "Sativa" },
-            { label: "Híbrida", value: "hybrid", mappedValue: "Hibrida" }
+            { label: "Híbrida", value: "hybrid", mappedValue: "Hibrida" },
         ],
         theme: THEME_PRESETS.PURPLE,
         seo: {
             title: "Destilados de Alta Pureza | NubePop Colombia",
-            description: "Encuentra destilados de la mejor calidad. Sativa, Indica e Híbrida para la mejor experiencia. Envío discreto a todo el país.",
-        }
+            description:
+                "Encuentra destilados de la mejor calidad. Sativa, Indica e Híbrida para la mejor experiencia. Envío discreto a todo el país.",
+        },
     },
     baterias: {
         id: "baterias",
         slug: "baterias",
         title: "Baterías",
-        description: "La energía que necesitas. Encuentra la batería perfecta para tus cartuchos, desde sistemas pod hasta mods avanzados.",
+        description:
+            "La energía que necesitas. Encuentra la batería perfecta para tus cartuchos, desde sistemas pod hasta mods avanzados.",
         sheetUrl: process.env.NEXT_PUBLIC_GOOGLE_SHEETS_BATERIAS_URL,
         fallbackData: BATERIAS_FALLBACK,
         cartCategory: "Batería",
@@ -147,19 +166,21 @@ export const CATEGORY_CONFIGS: Record<string, CategoryConfig> = {
             { label: "Rosca 510", value: "510", mappedValue: "510 Thread" },
             { label: "Voltaje Variable", value: "variable", mappedValue: "Variable Voltage" },
             { label: "Sistema Pod", value: "pod", mappedValue: "Pod System" },
-            { label: "Mods Avanzados", value: "mod", mappedValue: "Mod" }
+            { label: "Mods Avanzados", value: "mod", mappedValue: "Mod" },
         ],
         theme: THEME_PRESETS.BLUE,
         seo: {
             title: "Baterías 510 para Vapes | NubePop Colombia",
-            description: "Baterías de alta calidad para tus destilados. Voltaje variable y compatibilidad universal 510. Envío inmediato.",
-        }
+            description:
+                "Baterías de alta calidad para tus destilados. Voltaje variable y compatibilidad universal 510. Envío inmediato.",
+        },
     },
     combos: {
         id: "combos",
         slug: "combos",
         title: "Combos & Promociones",
-        description: "Combina y ahorra. Descubre nuestros paquetes especiales diseñados para ofrecerte la mejor experiencia al mejor precio.",
+        description:
+            "Combina y ahorra. Descubre nuestros paquetes especiales diseñados para ofrecerte la mejor experiencia al mejor precio.",
         sheetUrl: process.env.NEXT_PUBLIC_GOOGLE_SHEETS_COMBOS_URL,
         fallbackData: COMBOS_FALLBACK,
         cartCategory: "Combo",
@@ -168,16 +189,21 @@ export const CATEGORY_CONFIGS: Record<string, CategoryConfig> = {
         filterOptions: [
             { label: "Kits Iniciales", value: "starter", mappedValue: "Kits Iniciales" },
             { label: "Vaper + Destilado", value: "vape-extract", mappedValue: "Vaper + Destilado" },
-            { label: "Destilado + Batería", value: "extract-battery", mappedValue: "Destilado + Batería" },
-            { label: "Packs Múltiples", value: "multi-pack", mappedValue: "Packs Múltiples" }
+            {
+                label: "Destilado + Batería",
+                value: "extract-battery",
+                mappedValue: "Destilado + Batería",
+            },
+            { label: "Packs Múltiples", value: "multi-pack", mappedValue: "Packs Múltiples" },
         ],
         theme: THEME_PRESETS.PINK,
         seo: {
             title: "Combos y Ahorro en Vapes | NubePop Colombia",
-            description: "Lleva más por menos con los combos NubePop. Incluye envío rápido y los mejores kits de Colombia.",
-        }
-    }
-};
+            description:
+                "Lleva más por menos con los combos NubePop. Incluye envío rápido y los mejores kits de Colombia.",
+        },
+    },
+}
 
 // 5. Navigation & Social
 export const navLinks: NavLink[] = [
@@ -193,20 +219,20 @@ export const socialLinks = [
         name: "WhatsApp",
         url: `https://wa.me/${WHATSAPP_NUMBER}`,
         icon: "whatsapp",
-        color: "#25D366"
+        color: "#25D366",
     },
     {
         name: "Instagram",
         url: "https://www.instagram.com/nubepoptd/",
         icon: "instagram",
-        color: "#E1306C"
+        color: "#E1306C",
     },
     {
         name: "Facebook",
         url: "https://www.facebook.com/share/1Dyyc3VPqJ/?mibextid=wwXIfr",
         icon: "facebook",
-        color: "#1877F2"
-    }
+        color: "#1877F2",
+    },
 ]
 
 // 6. Marketing Data
@@ -220,11 +246,7 @@ export const promosData = [
 export const heroSlides: HeroSlide[] = [
     {
         title: "Promo semanal: 20% OFF",
-        bullets: [
-            "Descuento especial",
-            "Hasta agotar stock",
-            "Solo en productos seleccionados",
-        ],
+        bullets: ["Descuento especial", "Hasta agotar stock", "Solo en productos seleccionados"],
         primary: "Ver oferta",
         secondary: "Más info",
         message: "Hola, quiero la promo semanal",
@@ -245,11 +267,7 @@ export const heroSlides: HeroSlide[] = [
     },
     {
         title: "Sabor que acompaña ☁️",
-        bullets: [
-            "🔥 Novedades cada semana",
-            "⚡ Entregas rápidas",
-            "💬 Atención todos los días",
-        ],
+        bullets: ["🔥 Novedades cada semana", "⚡ Entregas rápidas", "💬 Atención todos los días"],
         primary: "Ver productos",
         secondary: "Contactar",
         message: "Hola, quiero saber más sobre los productos",
@@ -285,7 +303,8 @@ export const popularProducts: Product[] = [
     {
         id: "p-mtrx25",
         name: "MTRX 25000",
-        description: "Vape desechable de 25000 puffs con batería recargable, sabores intensos y gran producción de vapor, ideal para quienes buscan máxima duración.",
+        description:
+            "Vape desechable de 25000 puffs con batería recargable, sabores intensos y gran producción de vapor, ideal para quienes buscan máxima duración.",
         price: 35000,
         images: ["/productos/todos-productos/Mtrx25.PNG"],
         isPrimary: false,
@@ -293,7 +312,8 @@ export const popularProducts: Product[] = [
     {
         id: "p-mtrx12",
         name: "MTRX 12000",
-        description: "Vape desechable de 12000 puffs con sabores premium y vapor suave, perfecto para una experiencia de vapeo duradera y práctica.",
+        description:
+            "Vape desechable de 12000 puffs con sabores premium y vapor suave, perfecto para una experiencia de vapeo duradera y práctica.",
         price: 24000,
         images: ["/productos/todos-productos/Mtrx12.PNG"],
         isPrimary: false,
@@ -301,7 +321,8 @@ export const popularProducts: Product[] = [
     {
         id: "p-snoopysmoke",
         name: "Snoopy Smoke",
-        description: "Vape desechable compacto con sabores intensos y vapor suave, ideal para quienes buscan un dispositivo práctico y portátil.",
+        description:
+            "Vape desechable compacto con sabores intensos y vapor suave, ideal para quienes buscan un dispositivo práctico y portátil.",
         price: 25000,
         images: ["/productos/todos-productos/SnoopySmoke.PNG"],
         isPrimary: false,
@@ -309,11 +330,12 @@ export const popularProducts: Product[] = [
     {
         id: "p-lostmary",
         name: "Lost Mary",
-        description: "Vape desechable de 5000 puffs con sabores premium y diseño compacto, perfecto para una experiencia de vapeo cómoda y portátil.",
+        description:
+            "Vape desechable de 5000 puffs con sabores premium y diseño compacto, perfecto para una experiencia de vapeo cómoda y portátil.",
         price: 15000,
         images: ["/productos/todos-productos/LostMary.PNG"],
         isPrimary: false,
-    }
+    },
 ]
 
 // 8. Testimonials & FAQs

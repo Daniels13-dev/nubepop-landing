@@ -21,15 +21,15 @@ export const GlassCard = forwardRef<HTMLDivElement, GlassCardProps>(
                 {...props}
             >
                 {glow && (
-                    <div className={cn(
-                        "absolute top-0 left-1/2 -translate-x-1/2 w-3/4 h-1/2 blur-[80px] rounded-full pointer-events-none opacity-0 transition-opacity duration-700",
-                        hover && "group-hover:opacity-100",
-                        glow
-                    )} />
+                    <div
+                        className={cn(
+                            "absolute top-0 left-1/2 -translate-x-1/2 w-3/4 h-1/2 blur-[80px] rounded-full pointer-events-none opacity-0 transition-opacity duration-700",
+                            hover && "group-hover:opacity-100",
+                            glow
+                        )}
+                    />
                 )}
-                <div className="relative z-10">
-                    {children}
-                </div>
+                <div className="relative z-10">{children}</div>
             </div>
         )
     }

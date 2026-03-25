@@ -92,9 +92,7 @@ export const AccordionContent = React.forwardRef<
         )}
         {...props}
     >
-        <div className={cn("px-5 pb-5 pt-0 text-muted-foreground", className)}>
-            {children}
-        </div>
+        <div className={cn("px-5 pb-5 pt-0 text-muted-foreground", className)}>{children}</div>
     </RadixAccordion.Content>
 ))
 AccordionContent.displayName = RadixAccordion.Content.displayName
