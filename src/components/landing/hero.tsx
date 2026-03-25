@@ -20,24 +20,33 @@ export default function Hero() {
 
     return (
         <section
-            className="relative min-h-screen flex items-center justify-center overflow-hidden pt-[var(--navbar-height)] lg:pt-0"
+            className="relative min-h-[90vh] lg:min-h-screen flex items-center justify-center overflow-hidden pt-12 lg:pt-0"
         >
-            {/* Dynamic Background Glow */}
+            {/* Dynamic Background Glow - Optimized for mobile */}
             <motion.div 
                 key={active}
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 0.2 }}
+                initial={{ opacity: 0, scale: 0.8 }}
+                animate={{ opacity: 0.3, scale: 1 }}
                 transition={{ duration: 1.5 }}
                 className={cn(
-                    "absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[60rem] h-[60rem] blur-[180px] rounded-full pointer-events-none z-0",
-                    active === 0 ? "bg-primary" : active === 1 ? "bg-secondary" : "bg-blue-500"
+                    "absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[30rem] lg:w-[60rem] h-[30rem] lg:h-[60rem] blur-[100px] lg:blur-[180px] rounded-full pointer-events-none z-0 opacity-20",
+                    active === 0 ? "bg-primary" : active === 1 ? "bg-secondary" : "bg-[#c049eb]"
                 )}
             />
 
-            <div className="relative site-container z-10 w-full">
-                <div className="grid lg:grid-cols-12 gap-12 items-center">
-                    {/* Left: Content */}
-                    <div className="lg:col-span-12 xl:col-span-7 text-center lg:text-left">
+            <div className="relative site-container z-10 w-full pb-28 lg:pb-0 mb-10 lg:mb-0">
+                <div className="flex flex-col lg:grid lg:grid-cols-12 gap-8 lg:gap-12 items-center">
+                    
+                    {/* Visuals - High Priority on Mobile (Stacked on top) */}
+                    <div className="order-1 lg:order-2 lg:col-span-12 xl:col-span-5 relative w-full mb-8 lg:mb-0">
+                        <HeroVisuals 
+                            active={active}
+                            onHover={setIsPaused}
+                        />
+                    </div>
+
+                    {/* Content - Below Visuals on Mobile */}
+                    <div className="order-2 lg:order-1 lg:col-span-12 xl:col-span-7 text-center lg:text-left px-4">
                         {heroSlides.map((slide, idx) => (
                             <HeroContent 
                                 key={idx}
@@ -48,18 +57,11 @@ export default function Hero() {
                         ))}
                     </div>
 
-                    {/* Right: Floating Visuals */}
-                    <div className="lg:col-span-12 xl:col-span-5 relative">
-                        <HeroVisuals 
-                            active={active}
-                            onHover={setIsPaused}
-                        />
-                    </div>
                 </div>
             </div>
 
-            {/* Pagination / Progress Bar */}
-            <div className="absolute bottom-12 left-1/2 -translate-x-1/2 flex items-center gap-6 z-20">
+            {/* Pagination / Progress Bar - Adjusted for mobile position */}
+            <div className="absolute bottom-24 md:bottom-12 left-1/2 -translate-x-1/2 flex items-center gap-4 md:gap-6 z-20">
                 {promosData.map((_, idx) => (
                     <button
                         key={idx}
@@ -68,7 +70,7 @@ export default function Hero() {
                     >
                         <div className={cn(
                             "h-1 rounded-full transition-all duration-500",
-                            active === idx ? "w-12 bg-white" : "w-4 bg-white/20 group-hover:bg-white/40"
+                            active === idx ? "w-10 md:w-12 bg-white" : "w-3 md:w-4 bg-white/20 group-hover:bg-white/40"
                         )} />
                     </button>
                 ))}

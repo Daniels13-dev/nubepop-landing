@@ -8,14 +8,14 @@ import { GlassCard } from "@/components/ui/glass-card"
 
 export function Testimonials() {
     return (
-        <section id="testimonials" className="py-16 relative overflow-hidden bg-transparent">
+        <section id="testimonials" className="py-10 relative overflow-hidden bg-transparent">
             {/* Background elements */}
             <div className="absolute top-0 left-1/4 w-[500px] h-[500px] bg-primary/5 blur-[120px] rounded-full pointer-events-none" />
             <div className="absolute bottom-0 right-1/4 w-[500px] h-[500px] bg-secondary/5 blur-[120px] rounded-full pointer-events-none" />
 
             <div className="site-container relative z-10">
                 {/* Header */}
-                <div className="text-left mb-12 max-w-2xl">
+                <div className="text-left mb-8 max-w-2xl">
                     <motion.div
                         initial={{ opacity: 0, scale: 0.9 }}
                         whileInView={{ opacity: 1, scale: 1 }}
@@ -87,7 +87,7 @@ export function Testimonials() {
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
-                    className="mt-20 text-center"
+                    className="mt-10 text-center"
                 >
                     <p className="text-zinc-500 mb-2">Únete a cientos de clientes que confían en nosotros</p>
                     <div className="flex items-center justify-center gap-4 text-white font-black text-2xl">
