@@ -16,7 +16,7 @@ export const metadata: Metadata = {
         description: config.seo.description,
         url: `${SEO_CONFIG.baseUrl}/${config.slug}`,
         siteName: SEO_CONFIG.siteName,
-    }
+    },
 }
 
 export default function VapersPage() {

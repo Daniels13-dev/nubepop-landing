@@ -64,21 +64,22 @@ export function AgeVerification() {
                             <h2 className="mb-2 text-3xl font-bold tracking-tight text-white">
                                 ¿Eres mayor de edad?
                             </h2>
-                            
+
                             <p className="mb-8 text-zinc-400">
-                                Los productos vendidos en este sitio contienen nicotina y otras sustancias reguladas. 
-                                Debes tener al menos <strong>18 años</strong> para acceder a NubePop.
+                                Los productos vendidos en este sitio contienen nicotina y otras
+                                sustancias reguladas. Debes tener al menos <strong>18 años</strong>{" "}
+                                para acceder a NubePop.
                             </p>
 
                             <div className="flex w-full flex-col gap-3 sm:flex-row">
-                                <Button 
+                                <Button
                                     onClick={handleDeny}
-                                    variant="outline" 
+                                    variant="outline"
                                     className="flex-1 rounded-2xl border-white/10 hover:bg-white/5 h-16 md:h-14 py-4 text-lg font-bold uppercase tracking-tight"
                                 >
                                     Soy menor de 18
                                 </Button>
-                                <Button 
+                                <Button
                                     onClick={handleVerify}
                                     className="flex-1 rounded-2xl bg-gradient-to-r from-[#c049eb] to-[#ea1f78] text-white hover:opacity-90 transition-opacity h-16 md:h-14 py-4 text-lg font-black uppercase tracking-tight shadow-[0_0_30px_rgba(192,73,235,0.3)]"
                                 >
@@ -87,7 +88,8 @@ export function AgeVerification() {
                             </div>
 
                             <p className="mt-6 text-xs text-zinc-600">
-                                Al ingresar, confirmas que tienes edad legal para comprar productos de vapeo en tu jurisdicción y aceptas nuestros términos de servicio.
+                                Al ingresar, confirmas que tienes edad legal para comprar productos
+                                de vapeo en tu jurisdicción y aceptas nuestros términos de servicio.
                             </p>
                         </div>
                     </motion.div>

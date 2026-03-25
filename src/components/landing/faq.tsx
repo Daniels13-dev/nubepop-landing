@@ -18,7 +18,10 @@ export function FAQ() {
     const whatsappUrl = getWhatsAppUrl(WHATSAPP_NUMBER, "Hola NubePop! Tengo una duda sobre...")
 
     return (
-        <section id="faq" className="py-12 relative overflow-hidden bg-transparent border-t border-white/5">
+        <section
+            id="faq"
+            className="py-12 relative overflow-hidden bg-transparent border-t border-white/5"
+        >
             {/* Background elements */}
             <div className="absolute top-1/2 right-0 -translate-y-1/2 w-[600px] h-[600px] bg-accent/5 blur-[150px] rounded-full pointer-events-none" />
 
@@ -34,14 +37,17 @@ export function FAQ() {
                         >
                             <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 border border-white/10 mb-6">
                                 <HelpCircle className="w-4 h-4 text-primary" />
-                                <span className="text-xs font-bold uppercase tracking-widest text-zinc-400">Centro de Ayuda</span>
+                                <span className="text-xs font-bold uppercase tracking-widest text-zinc-400">
+                                    Centro de Ayuda
+                                </span>
                             </div>
                             <h2 className="text-4xl md:text-6xl font-black text-white leading-tight mb-8">
                                 Resolvamos tus <br />
                                 <span className="text-secondary">Dudas</span>
                             </h2>
                             <p className="text-zinc-500 text-lg leading-relaxed max-w-md">
-                                ¿Tienes alguna pregunta sobre nuestros productos, envíos o legalidad? Aquí encontrarás las respuestas más comunes.
+                                ¿Tienes alguna pregunta sobre nuestros productos, envíos o
+                                legalidad? Aquí encontrarás las respuestas más comunes.
                             </p>
                         </motion.div>
 
@@ -61,17 +67,24 @@ export function FAQ() {
                                         </div>
                                         <span className="absolute -bottom-1 -right-1 w-4 h-4 rounded-full bg-white border-2 border-black animate-pulse shadow-[0_0_10px_rgba(255,255,255,0.5)]" />
                                     </div>
-                                    <span className="text-xs font-bold text-zinc-400 uppercase tracking-widest">Soporte en vivo</span>
+                                    <span className="text-xs font-bold text-zinc-400 uppercase tracking-widest">
+                                        Soporte en vivo
+                                    </span>
                                 </div>
-                                
-                                <h3 className="text-2xl font-black text-white mb-4">¿No encuentras lo que buscas?</h3>
+
+                                <h3 className="text-2xl font-black text-white mb-4">
+                                    ¿No encuentras lo que buscas?
+                                </h3>
                                 <p className="text-zinc-500 text-base mb-8 leading-relaxed">
-                                    Nuestros expertos están listos para ayudarte a elegir el vaper o destilado ideal para ti. 
-                                    <span className="block mt-2 text-zinc-400 font-bold italic">Respuesta inmediata.</span>
+                                    Nuestros expertos están listos para ayudarte a elegir el vaper o
+                                    destilado ideal para ti.
+                                    <span className="block mt-2 text-zinc-400 font-bold italic">
+                                        Respuesta inmediata.
+                                    </span>
                                 </p>
-                                
-                                <a 
-                                    href={whatsappUrl} 
+
+                                <a
+                                    href={whatsappUrl}
                                     target="_blank"
                                     rel="noopener noreferrer"
                                     className="w-full h-14 rounded-full bg-gradient-to-r from-primary to-secondary text-white font-black flex items-center justify-center gap-3 transition-all duration-500 transform hover:scale-[1.02] hover:shadow-[0_0_30px_rgba(137,37,211,0.4)] active:scale-95 group/btn"
@@ -85,7 +98,7 @@ export function FAQ() {
                     </div>
 
                     {/* Right Side: Accordion */}
-                    <motion.div 
+                    <motion.div
                         variants={fadeInUp}
                         initial="initial"
                         whileInView="animate"
@@ -95,8 +108,8 @@ export function FAQ() {
                     >
                         <Accordion type="single" collapsible className="w-full space-y-4">
                             {faqs.map((faq, i) => (
-                                <AccordionItem 
-                                    key={i} 
+                                <AccordionItem
+                                    key={i}
                                     value={`item-${i + 1}`}
                                     className="border border-white/5 bg-zinc-900/40 backdrop-blur-xl rounded-2xl md:rounded-3xl overflow-hidden hover:border-primary/30 transition-colors"
                                 >

@@ -13,7 +13,7 @@ export function CartActions({ product, themeClasses }: CartActionsProps) {
     const { addToCart, cartItems, updateQuantity, removeFromCart } = useCart()
 
     const getQuantity = (id: string | number) => {
-        const item = cartItems.find(item => item.id === id)
+        const item = cartItems.find((item) => item.id === id)
         return item ? item.quantity : 0
     }
 
@@ -31,7 +31,7 @@ export function CartActions({ product, themeClasses }: CartActionsProps) {
 
     if (product.stock === 0) {
         return (
-            <Button 
+            <Button
                 disabled
                 className="w-full transition-all duration-300 rounded-xl h-12 bg-zinc-800 text-zinc-500 border-zinc-700 cursor-not-allowed opacity-70"
             >
@@ -42,8 +42,10 @@ export function CartActions({ product, themeClasses }: CartActionsProps) {
 
     if (currentQuantity > 0) {
         return (
-            <div className={`flex items-center justify-between w-full h-12 bg-zinc-900/50 rounded-xl border ${themeClasses.border} overflow-hidden`}>
-                <button 
+            <div
+                className={`flex items-center justify-between w-full h-12 bg-zinc-900/50 rounded-xl border ${themeClasses.border} overflow-hidden`}
+            >
+                <button
                     onClick={() => {
                         if (currentQuantity === 1) {
                             removeFromCart(product.id)
@@ -54,13 +56,18 @@ export function CartActions({ product, themeClasses }: CartActionsProps) {
                     className="w-12 h-full flex items-center justify-center text-zinc-400 hover:text-white hover:bg-zinc-800 transition-colors"
                 >
                     <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M20 12H4" />
+                        <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            strokeWidth={2.5}
+                            d="M20 12H4"
+                        />
                     </svg>
                 </button>
                 <span className="flex-1 text-center font-bold text-white">
                     {currentQuantity} en el carrito
                 </span>
-                <button 
+                <button
                     onClick={() => {
                         if (product.stock === undefined || currentQuantity < product.stock) {
                             updateQuantity(product.id, 1)
@@ -68,13 +75,18 @@ export function CartActions({ product, themeClasses }: CartActionsProps) {
                     }}
                     className={`w-12 h-full flex items-center justify-center transition-colors ${
                         product.stock !== undefined && currentQuantity >= product.stock
-                        ? 'text-zinc-600 cursor-not-allowed bg-zinc-900/50'
-                        : `${themeClasses.text} hover:text-white ${themeClasses.bgHover}`
+                            ? "text-zinc-600 cursor-not-allowed bg-zinc-900/50"
+                            : `${themeClasses.text} hover:text-white ${themeClasses.bgHover}`
                     }`}
                     disabled={product.stock !== undefined && currentQuantity >= product.stock}
                 >
                     <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M12 4v16m8-8H4" />
+                        <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            strokeWidth={2.5}
+                            d="M12 4v16m8-8H4"
+                        />
                     </svg>
                 </button>
             </div>
@@ -82,7 +94,7 @@ export function CartActions({ product, themeClasses }: CartActionsProps) {
     }
 
     return (
-        <Button 
+        <Button
             onClick={handleAddToCart}
             className={`w-full transition-all duration-300 rounded-xl h-12 bg-transparent ${themeClasses.bgHover} ${themeClasses.text} hover:text-white border ${themeClasses.border}`}
         >
