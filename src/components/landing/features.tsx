@@ -68,14 +68,14 @@ export function Features() {
     const featured = products.filter(p => !p.isPrimary)
 
     return (
-        <section id="features" className="py-24 relative overflow-hidden">
+        <section id="features" className="py-12 relative overflow-hidden">
             {/* Background Decorations */}
             <div className="absolute top-1/4 -right-20 w-[40rem] h-[40rem] bg-secondary/10 blur-[150px] rounded-full pointer-events-none" />
             <div className="absolute bottom-1/4 -left-20 w-[40rem] h-[40rem] bg-primary/10 blur-[150px] rounded-full pointer-events-none" />
             
             <div className="site-container relative z-10">
                 {/* --- SECCIÓN 1: COLECCIONES (BENTO 1) --- */}
-                <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6">
+                <div className="flex flex-col md:flex-row md:items-end justify-between mb-8 gap-6">
                     <div className="max-w-xl">
                         <div className="flex items-center gap-2 mb-4 animate-in fade-in slide-in-from-left-4 duration-700">
                             <span className="h-px w-8 bg-secondary" />
@@ -92,7 +92,7 @@ export function Features() {
                     initial="initial"
                     whileInView="animate"
                     viewport={{ once: true }}
-                    className="grid grid-cols-1 md:grid-cols-4 lg:grid-cols-6 auto-rows-[250px] gap-6 mb-32"
+                    className="grid grid-cols-1 md:grid-cols-4 lg:grid-cols-6 auto-rows-[250px] gap-6 mb-12"
                 >
                     {/* Item 1: Vapers (Mega Highlight) */}
                     {categories[0] && (

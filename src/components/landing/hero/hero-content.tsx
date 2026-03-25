@@ -38,42 +38,42 @@ export function HeroContent({ slide, active, idx }: HeroContentProps) {
                 {idx === 0 ? "Exclusividad NubePop" : idx === 1 ? "Potencia & Pureza" : "Kit Completo"}
             </motion.span>
 
-            <h1 className="text-6xl md:text-8xl lg:text-[7.5rem] font-black text-white leading-[0.85] tracking-tighter uppercase mb-8">
+            <h1 className="text-5xl md:text-8xl lg:text-[7.5rem] font-black text-white leading-[0.9] lg:leading-[0.85] tracking-tighter uppercase mb-6 lg:mb-8">
                 {slide.title.split(' ').map((word, i) => (
                     <span 
                         key={i} 
                         className={i === 1 ? "text-transparent stroke-white" : ""} 
-                        style={i === 1 ? { WebkitTextStroke: '1.5px rgba(255,255,255,0.8)' } : {}}
+                        style={i === 1 ? { WebkitTextStroke: '1px rgba(255,255,255,0.8)' } : {}}
                     >
                         {word}{" "}
                     </span>
                 ))}
             </h1>
 
-            <div className="space-y-4 mb-10 max-w-lg mx-auto lg:mx-0">
+            <div className="space-y-3 lg:space-y-4 mb-8 lg:mb-10 max-w-lg mx-auto lg:mx-0">
                 {slide.bullets.map((bullet, i) => (
                     <motion.div 
                         key={i} 
                         initial={{ opacity: 0, x: -10 }}
                         animate={{ opacity: 1, x: 0 }}
                         transition={{ delay: 0.4 + (i * 0.1) }}
-                        className="flex items-center gap-4 text-zinc-400 font-medium md:text-lg"
+                        className="flex items-center justify-center lg:justify-start gap-4 text-zinc-400 font-medium text-sm md:text-lg"
                     >
-                        <div className="w-10 h-px bg-white/20" />
+                        <div className="hidden lg:block w-10 h-px bg-white/20" />
                         {bullet}
                     </motion.div>
                 ))}
             </div>
 
-            <div className="flex flex-col sm:flex-row items-center gap-6 justify-center lg:justify-start">
+            <div className="flex flex-col sm:flex-row items-center gap-4 lg:gap-6 justify-center lg:justify-start w-full max-w-sm mx-auto lg:mx-0">
                 <a
                     href={whatsappUrl}
                     target="_blank"
-                    className="h-16 px-10 rounded-2xl bg-white text-black font-black uppercase tracking-widest text-sm flex items-center justify-center hover:scale-105 transition-all shadow-xl shadow-white/10"
+                    className="w-full sm:w-auto h-14 md:h-16 px-10 rounded-2xl bg-white text-black font-black uppercase tracking-widest text-xs md:text-sm flex items-center justify-center hover:scale-105 transition-all shadow-xl shadow-white/10"
                 >
                     {slide.primary}
                 </a>
-                <button className="h-16 px-10 rounded-2xl border border-white/10 backdrop-blur-md text-white font-black uppercase tracking-widest text-sm hover:bg-white/5 transition-all">
+                <button className="w-full sm:w-auto h-14 md:h-16 px-10 rounded-2xl border border-white/10 backdrop-blur-md text-white font-black uppercase tracking-widest text-xs md:text-sm hover:bg-white/5 transition-all">
                     {slide.secondary}
                 </button>
             </div>

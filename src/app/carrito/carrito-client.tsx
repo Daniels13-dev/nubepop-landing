@@ -41,7 +41,7 @@ export default function CarritoClient() {
         <main className="site-container">
             <Navbar />
             
-            <div className="pt-32 pb-20 min-h-screen">
+            <div className="pt-20 md:pt-32 pb-20 min-h-screen">
                 <div className="w-full border-b border-white/10 pb-6 mb-10">
                     <h1 className="text-4xl md:text-5xl font-bold text-zinc-100 flex items-center gap-4">
                         Tu Carrito
@@ -158,7 +158,7 @@ export default function CarritoClient() {
 
                                 <Button 
                                     onClick={handleWhatsAppOrder}
-                                    className="w-full h-14 rounded-xl text-lg font-black uppercase tracking-widest bg-white text-black hover:bg-zinc-200 shadow-xl transition-all duration-300 flex items-center justify-center gap-3 group"
+                                    className="w-full h-14 rounded-xl text-xs md:text-lg font-black uppercase tracking-widest bg-white text-black hover:bg-zinc-200 shadow-xl transition-all duration-300 flex items-center justify-center gap-3 group"
                                 >
                                     <FaWhatsapp className="w-5 h-5 group-hover:rotate-12 transition-transform duration-300" />
                                     <span>Pedir por WhatsApp</span>

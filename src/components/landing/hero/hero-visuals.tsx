@@ -34,7 +34,7 @@ export function HeroVisuals({ active, onHover }: HeroVisualsProps) {
                     active={active} 
                     onMouseEnter={() => onHover(true)}
                     onMouseLeave={() => onHover(false)}
-                    className="w-full aspect-[4/5] md:aspect-[5/7] rounded-[3rem] overflow-hidden border border-white/5 shadow-2xl"
+                    className="w-full aspect-[9/16] lg:aspect-[5/7] rounded-[3rem] overflow-hidden border border-white/5 shadow-2xl"
                 />
             </motion.div>
         </div>

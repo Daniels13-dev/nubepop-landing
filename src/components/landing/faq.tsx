@@ -18,7 +18,7 @@ export function FAQ() {
     const whatsappUrl = getWhatsAppUrl(WHATSAPP_NUMBER, "Hola NubePop! Tengo una duda sobre...")
 
     return (
-        <section id="faq" className="py-24 relative overflow-hidden bg-transparent border-t border-white/5">
+        <section id="faq" className="py-12 relative overflow-hidden bg-transparent border-t border-white/5">
             {/* Background elements */}
             <div className="absolute top-1/2 right-0 -translate-y-1/2 w-[600px] h-[600px] bg-accent/5 blur-[150px] rounded-full pointer-events-none" />
 
