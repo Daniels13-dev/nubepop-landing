@@ -18,7 +18,7 @@ export function GoogleAnalytics() {
         if (!mounted || !GA_ID) return
 
         // Track pageview on GA4
-        window.gtag?.('config', GA_ID, {
+        window.gtag?.("config", GA_ID, {
             page_path: pathname,
         })
     }, [pathname, mounted])

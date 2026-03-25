@@ -52,5 +52,5 @@ export const transitionSmooth = {
 }
 
 export const transitionInstant = {
-    duration: 0
+    duration: 0,
 }

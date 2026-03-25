@@ -18,7 +18,7 @@ export function MetaPixel() {
         if (!mounted || !PIXEL_ID) return
 
         // Track pageview on route change
-        window.fbq?.('track', 'PageView')
+        window.fbq?.("track", "PageView")
     }, [pathname, mounted])
 
     if (!PIXEL_ID) return null

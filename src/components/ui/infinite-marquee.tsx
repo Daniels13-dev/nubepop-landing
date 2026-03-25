@@ -27,7 +27,7 @@ export function InfiniteMarquee({ items, className, speed = 20 }: InfiniteMarque
                 }}
                 style={{
                     display: "flex",
-                    width: "fit-content"
+                    width: "fit-content",
                 }}
             >
                 {duplicatedItems.map((item, idx) => (
